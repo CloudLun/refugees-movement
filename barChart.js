@@ -29,7 +29,7 @@ function barChartCreator(countryType, countryTypeVar) {
     .range([0, width]);
 
   let y = d3.scaleLog().domain([10, 1000000]).range([height, 0]);
-  console.log(y(100))
+  // console.log(y(100))
   // console.log(d3.extent(countryType.map((d) => +d["International total"])));
 
   //   let xAxis = barSvg

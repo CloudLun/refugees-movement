@@ -53,7 +53,7 @@ function countryCentroidCreator(data) {
   // centroids.selectAll("*").remove();
   centroids = g.centroids
     .selectAll("centroids")
-    .data(data[1].features)
+    .data(data[0].features)
     .enter()
     .append("path")
     .attr("class", "centroid")
