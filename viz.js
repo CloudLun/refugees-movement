@@ -1,25 +1,13 @@
 const data = {
-  countries: "./data/raw/countries.geojson",
+  countries: "",
   centroids: "./data/raw/centroids.geojson",
   refugees: "./data/data.csv",
-  // ref_2017: "./data/data_2017.csv",
-  // ref_2018: "./data/data_2018.csv",
-  // ref_2019: "./data/data_2019.csv",
-  // ref_2020: "./data/data_2020.csv",
-  // ref_2021: "./data/data_2021.csv",
-  // ref_2022: "./data/data_2022.csv",
 };
 
 const promises = [
   d3.json(data.countries),
   d3.json(data.centroids),
   d3.csv(data.refugees),
-  // d3.csv(data.ref_2017),
-  // d3.csv(data.ref_2018),
-  // d3.csv(data.ref_2019),
-  // d3.csv(data.ref_2020),
-  // d3.csv(data.ref_2021),
-  // d3.csv(data.ref_2022),
 ];
 
 const yearOptions = document.querySelector("#years");
