@@ -1,0 +1,31 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [19.43573279234468, 52.06848055692473]
+      },
+      "properties": {
+        "COUNTRY": "Poland",
+        "ISO": "PL",
+        "COUNTRYAFF": "Poland",
+        "AFF_ISO": "PL"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [31.27377208442636, 48.657532515563794]
+      },
+      "properties": {
+        "COUNTRY": "Ukraine",
+        "ISO": "UA",
+        "COUNTRYAFF": "Ukraine",
+        "AFF_ISO": "UA"
+      }
+    }
+  ]
+}
