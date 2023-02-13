@@ -5,8 +5,8 @@ const map = new mapboxgl.Map({
   container: "map", // container ID
   // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
   style: "mapbox://styles/cloudlun/cl2eq8ceb000a15o06rah6zx5", // style URL
-  center: [25.128, 19.815], // starting position [lng, lat]
-  zoom: 1.385, // starting zoom
+  center: [-28.128, 27.915], // starting position [lng, lat]
+  zoom: 1.85, // starting zoom
   interactive: false,
 });
 
@@ -18,7 +18,7 @@ let svg = d3
   .select(container)
   .append("svg")
   .attr("width", "100%")
-  .attr("height", "100vh")
+  .attr("height", "100%")
   .style("position", "absolute")
   .style("z-index", 2);
 
@@ -36,7 +36,7 @@ let refugeesPath;
 let countryColor = "#ffa500";
 let pathColor = "#ffc966";
 
-const r = 3.5;
+const r = 2.5;
 const svgNode = document.querySelector("svg");
 const tooltip = d3.select("body").append("div").attr("class", "tooltip");
 

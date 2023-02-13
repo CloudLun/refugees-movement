@@ -1,66 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="description" content="">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="" />
     <title>Trajectories of Refugees | Lun Hung</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./style.css" />
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js"></script>
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css" rel="stylesheet">
-</head>
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+  </head>
 
-<body>
-    <div class="container">
-        <div class="content">
-            <div class="title">
-                <p>Movement of Global Refugees</p>
-            </div>
-            <div class="selection">
-                <p id="inandoutTitle">Select the Path Originated from or Headed to</p>
-                <div class="inout">
-                    <div>out</div>
-                    <div class="btn">
-                        <div class="btn-circle"></div>
-                    </div>
-                    <div>in</div>
-                </div>
-                <p id="yearTitle">Select the Year</p>
-                <select class="years" id="years">
-                    <option value="2017">2017</option>
-                    <option value="2018">2018</option>
-                    <option value="2019">2019</option>
-                    <option value="2020">2020</option>
-                    <option value="2021">2021</option>
-                    <option value="2022" selected="selected">2022</option>
-                </select>
-            </div>
-            <div class="info">
-                <div class="num-section">
-                    <p id="refugeesNum">0</p>
-                    <p>refugees originated from/headed to <span id="countryName">the country</span></p>
-                </div>
-                <div class="per-section">
-                    <p id="refugeesPer"><span id="refugeesPerNum">0</span>%</p>
-                    <p>of global refugees movement happening in this country</p>
-                </div>
-
-
-            </div>
-            <div id="barChart">
-                <div class="chartTitle">Top Ten Refugees Origin/Aslyum Countries</div>
-            </div>
+  <body>
+    <div class="container" id="main">
+      <div id="map"></div>
+      <div class="content">
+        <div class="title">
+          <p>Movement of Global Refugees</p>
         </div>
-        <div id="map"></div>
-
+        <div class="selection">
+          <div class="inout">
+            <div>Originated</div>
+            <div class="btn">
+              <div class="btn-circle"></div>
+            </div>
+            <div>Headed</div>
+          </div>
+          <div class="years">
+            <p id="yearTitle">Select the Year</p>
+            <select class="yearsSelection" id="yearsSelection">
+              <option value="2017">2017</option>
+              <option value="2018">2018</option>
+              <option value="2019">2019</option>
+              <option value="2020">2020</option>
+              <option value="2021">2021</option>
+              <option value="2022" selected="selected">2022</option>
+            </select>
+          </div>
+        </div>
+        <div class="info">
+          <div class="num-section">
+            <p id="refugeesNum">0</p>
+            <p>
+              refugees originated from/headed to
+              <span id="countryName">the country</span>
+            </p>
+          </div>
+          <div class="per-section">
+            <p id="refugeesPer"><span id="refugeesPerNum">0</span>%</p>
+            <p>of global refugees movement happening in this country</p>
+          </div>
+        </div>
+        <div id="barChart">
+          <div class="chartTitle">Top Ten Refugees Origin/Aslyum Countries</div>
+        </div>
+      </div>
     </div>
+    <div id="multiple"></div>
 
     <script src="./app.js"></script>
     <script src="./barChart.js"></script>
     <script src="./map.js"></script>
     <script src="./viz.js"></script>
-
-</body>
-
+  </body>
 </html>

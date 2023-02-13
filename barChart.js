@@ -1,8 +1,8 @@
 const barMargin = {
-  top: 25,
-  right: 10,
-  bottom: 30,
-  left: 10,
+  top: 0,
+  right: 0,
+  bottom: 0,
+  left: 0,
 };
 
 const barChartContainer = document.querySelector("#barChart");
@@ -25,10 +25,10 @@ function barChartCreator(countryType, countryTypeVar) {
   let x = d3
     .scaleBand()
     .domain(countryType.map((d) => d[countryTypeVar]))
-    .padding(0.2)
+    // .padding(0.2)
     .range([0, width]);
 
-  let y = d3.scaleLog().domain([10, 1000000]).range([height, 0]);
+  let y = d3.scaleLog().domain([10, 10000000]).range([height, 0]);
   // console.log(y(100))
   // console.log(d3.extent(countryType.map((d) => +d["International total"])));
 
