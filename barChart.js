@@ -6,9 +6,8 @@ const barMargin = {
 };
 
 const barChartContainer = document.querySelector("#barChart");
-const width = barChartContainer.clientWidth;
-const height =
-  barChartContainer.clientHeight - barMargin.bottom - barMargin.top;
+const width = barChartContainer.clientWidth - 20;
+const height = barChartContainer.clientHeight;
 
 let barSvg = d3
   .select("#barChart")
@@ -22,15 +21,14 @@ let topFiveCountyType = [];
 function barChartCreator(countryType, countryTypeVar) {
   barSvg.selectAll("*").remove();
 
-  let x = d3
+  let x = d3.scaleLog().domain([1, 1000000]).range([0, width]);
+
+  let y = d3
     .scaleBand()
     .domain(countryType.map((d) => d[countryTypeVar]))
     // .padding(0.2)
     .range([0, width]);
 
-  let y = d3.scaleLog().domain([10, 10000000]).range([height, 0]);
-  // console.log(y(100))
-  // console.log(d3.extent(countryType.map((d) => +d["International total"])));
 
   //   let xAxis = barSvg
   //     .append("g")
@@ -61,19 +59,19 @@ function barChartCreator(countryType, countryTypeVar) {
     .enter()
     .append("rect")
     .attr("x", function (d) {
-      return x(d[countryTypeVar]);
+      return x(1);
     })
     .attr("y", function (d) {
-      return y(10);
+      return y(d[countryTypeVar]);
     })
-    .attr("width", "20px")
-    .attr("height", function (d) {
-      return height - y(10);
-    })
-    .style("fill", pathColor)
+    .attr("width", x(1))
+    .attr("height", "20px")
+    .style("fill", toggle === "out" ? originatedColor : headedColor)
     .style("opacity", 1)
     .on("mouseover", (e, d) => {
-      content = `${toggle === 'out' ? d["Country of asylum"] : d["Country of origin"]}<br>${d["International total"]}`;
+      content = `${
+        toggle === "out" ? d["Country of asylum"] : d["Country of origin"]
+      }<br>${d["International total"]}`;
       tooltip.html(content).style("visibility", "visible");
     })
     .on("mousemove", (e, d) => {
@@ -89,16 +87,15 @@ function barChartCreator(countryType, countryTypeVar) {
     .selectAll("rect")
     .transition()
     .duration(800)
-    .attr("y", function (d) {
-      return y(+d["International total"]);
+    .attr("x", function (d) {
+      return x(1);
     })
-    .attr("height", function (d) {
-      return height - y(+d["International total"]);
+    .attr("width", function (d) {
+      return x(+d["International total"]);
     })
     .delay(function (d, i) {
       return i * 200;
     });
-
 }
 
 function sortValues(countryType) {

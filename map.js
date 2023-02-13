@@ -5,7 +5,7 @@ const map = new mapboxgl.Map({
   container: "map", // container ID
   // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
   style: "mapbox://styles/cloudlun/cl2eq8ceb000a15o06rah6zx5", // style URL
-  center: [-28.128, 27.915], // starting position [lng, lat]
+  center: [-28.128,-10.915], // starting position [lng, lat]
   zoom: 1.85, // starting zoom
   interactive: false,
 });
@@ -33,8 +33,8 @@ let originCountry = [];
 let asylumCountry = [];
 let refugeesPath;
 
-let countryColor = "#ffa500";
-let pathColor = "#ffc966";
+let originatedColor = "#ffc966";
+let headedColor = "#ff7b7b";
 
 const r = 2.5;
 const svgNode = document.querySelector("svg");
@@ -61,7 +61,7 @@ function countryCentroidCreator(data) {
     .attr("data-country", (d) => `${d.properties.COUNTRY}`)
     .attr("d", path.pointRadius(r))
     .attr("stroke", "none")
-    .attr("fill", countryColor)
+    .attr("fill", toggle === "out" ? originatedColor : headedColor)
     .attr("fill-opacity", 0.6)
     .on("mouseover", (e, d) => {
       content = `${d.properties.COUNTRY}`;
@@ -86,7 +86,7 @@ function countryCentroidCreator(data) {
         `${e.target.attributes["data-country"].value}`
       );
 
-      centroids.style("opacity", 0.3);
+      centroids.style("opacity", 0.15);
       countryPositionsCreator();
       if (toggle === "out") {
         countriesCoordinatesCreator(originCountry);
@@ -160,7 +160,7 @@ function countriesCirclesCreator(countryType, countryTypeVar) {
     .attr("cx", (d, i) => d[countryTypeVar][0])
     .attr("cy", (d) => d[countryTypeVar][1])
     .attr("r", 3)
-    .style("fill", countryColor)
+    .style("fill", toggle === "out" ? originatedColor : headedColor)
     .style("opacity", 0.7);
 }
 
@@ -194,7 +194,7 @@ function countryRefugeesPath(countryType) {
     })
     .attr("fill", "none")
     .style("opacity", 0.6)
-    .attr("stroke", pathColor)
+    .attr("stroke", toggle === "out" ? originatedColor : headedColor)
     .attr("stroke-width", (d) => wScale(+d["International total"]))
     // .on("mouseover", (e, d) => {
     //   // refugeesPath.style('opacity', 0.1)

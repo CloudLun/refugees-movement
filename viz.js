@@ -8,7 +8,7 @@ const promises = [
   d3.csv(data.refugees),
 ];
 
-const yearOptions = document.querySelector("#years");
+const yearOptions = document.querySelector("#yearsSelection");
 const btn = document.querySelector(".btn");
 
 Promise.all(promises).then((data) => {
@@ -26,10 +26,12 @@ Promise.all(promises).then((data) => {
       toggle = "in";
       mappingDefaultHandler();
       countryCentroidCreator(data);
+      btn.style.backgroundColor = headedColor
     } else {
       toggle = "out";
       mappingDefaultHandler();
       countryCentroidCreator(data);
+      btn.style.backgroundColor = originatedColor
     }
   });
 });
