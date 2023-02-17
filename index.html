@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="description" content="" />
-    <title>Trajectories of Refugees | Lun Hung</title>
+    <title>Trajectories of Refugees</title>
     <link rel="stylesheet" href="./style.css" />
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js"></script>
@@ -40,31 +40,34 @@
             </select>
           </div>
         </div>
-        <div class="info">
-          <div class="num-section">
-            <p id="refugeesNum">0</p>
-            <p>
-              refugees originated from/headed to
-              <span id="countryName">the country</span>
-            </p>
-          </div>
-          <div class="per-section">
-            <p id="refugeesPer"><span id="refugeesPerNum">0</span>%</p>
-            <p>of global refugees movement happening in this country</p>
-          </div>
+      </div>
+      <div class="info">
+        <div class="num-section">
+          <p id="countryName"><spanc></span>Country</p>
+          <p id="refugeesNum">0</p>
+          <p>Refugees</p>
         </div>
-        <div id="barChart">
-          <div class="chartTitle">Top Ten Refugees Origin/Aslyum Countries</div>
+        <!-- <div class="num-section">
+          <p id="refugeesPer"><span id="refugeesPerNum">0</span>%</p>
+          <p>of global refugees movement happening in this country</p>
+        </div> -->
+      </div>
+      <div class="charts">
+        <div class="chartContainer" id="lineChartContainer">
+          <div class="chartTitle">Total Asylum Applications</div>
+          <div id="lineChart"></div>
+        </div>
+        <div class="chartContainer" id="barChartContainer">
+          <div class="chartTitle">Top Ten Refugees Countries <br>Originated/Headed</div>
+          <div id="barChart"></div>
         </div>
       </div>
-    </div>
-    <div id="yearTrends">
-        
     </div>
 
     <script src="./app.js"></script>
     <script src="./barChart.js"></script>
     <script src="./map.js"></script>
     <script src="./viz.js"></script>
+    <script src="./lineChart.js"></script>
   </body>
 </html>

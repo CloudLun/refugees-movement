@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #242424;
+  /* background-color: #242424; */
   color: white;
 }
 
@@ -16,33 +16,28 @@ body {
 
 .content {
   position: absolute;
+  left: 0px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding-left: 10px;
+  /* justify-content: space-between; */
+  padding-left: 20px;
   height: 100%;
-  width: 24vw;
-  background-color: rgba(0, 0, 0, 0.6);
-  z-index: 100;
+  /* width: 24vw; */
+  /* background-color: rgba(0, 0, 0, 0.6); */
 }
 
 .title {
-  /* position: absolute;
-  top:0; */
   font-size: 32px;
   font-weight: 700;
   letter-spacing: 1.5px;
 }
 
 .selection {
-  /* position: absolute;
-  top: 120px;
-  right: 20px; */
+  position: absolute;
+  top: 15%;
   display: flex;
   flex-direction: column;
-  /* margin: 25px 0 20px 0; */
-  /* padding: 18px; */
-  /* background-color: rgba(0, 0, 0, 0.7); */
+  z-index: 110;
 }
 
 .selection p {
@@ -70,6 +65,7 @@ body {
 
 #yearsSelection {
   margin-top: 0px;
+  background-color: transparent;
 }
 
 .btn {
@@ -106,20 +102,23 @@ select {
 }
 
 .info {
-  /* position: absolute;
-  left: 20px;
-  top: 150px; */
-  /* transform: translate(0,-50%); */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  /* padding: 18px; */
-  width: 400px;
-  /* background-color: rgba(0, 0, 0, 0.7); */
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  padding: 0 20px;
+  width: 550px;
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .info p {
-  font-size: 15px;
+  font-size: 18px;
+}
+
+.num-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 #refugeesNum,
@@ -129,31 +128,47 @@ select {
   font-weight: 700;
   line-height: 0.8;
   letter-spacing: 2px;
-  color: "red";
+  /* color: "red"; */
 }
 
 #refugeesPerNum {
   margin-right: 1.5px;
 }
 
-#barChart {
-  /* position: absolute;
-  top: 50%;
-  left: 20px; */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: start;
-  padding-bottom: 20px;
-  width: 400px;
-  height: 420px;
-  /* background-color: rgba(0, 0, 0, 0.7); */
+.chartTitle {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  font-size: 20px;
+  font-weight: 900;
 }
 
-.chartTitle {
-  margin-bottom: 20px;
-  font-size: 18px;
-  font-weight: 900;
+#barChartContainer {
+  position: absolute;
+  bottom: 0;
+  left: 0px;
+  margin-bottom: 40px;
+  padding-left: 20px;
+  height: 70vh;
+  width: 370px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#lineChartContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 20px;
+  height: 100vh;
+  width: 420px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#lineChart {
+  height: 85%;
+}
+
+#barChart {
+  height: 85%;
 }
 
 .tooltip {
@@ -164,6 +179,38 @@ select {
   cursor: pointer;
 }
 
-#yearTrends {
-  height: 100vh;
+/* #lineChart {
+  border: 1px solid red;
+} */
+
+/* .yearOriginated {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  justify-content: center;
+  align-items: center;
+  width: 50vw;
+  height: 100%;
 }
+
+.originatedGrid {
+
+  width: 180px;
+  height: 160px;
+}
+
+.yearHeaded {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  justify-content: center;
+  align-items: center;
+  width: 50vw;
+  height: 100%;
+}
+
+.headedGrid {
+  border: 1px solid yellow;
+  width: 180px;
+  height: 160px;
+} */

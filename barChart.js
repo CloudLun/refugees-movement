@@ -5,9 +5,9 @@ const barMargin = {
   left: 0,
 };
 
-const barChartContainer = document.querySelector("#barChart");
-const width = barChartContainer.clientWidth - 20;
-const height = barChartContainer.clientHeight;
+const barChart = document.querySelector("#barChart");
+const width = barChart.clientWidth - 40;
+const height = barChart.clientHeight;
 
 let barSvg = d3
   .select("#barChart")
@@ -21,33 +21,17 @@ let topFiveCountyType = [];
 function barChartCreator(countryType, countryTypeVar) {
   barSvg.selectAll("*").remove();
 
-  let x = d3.scaleLog().domain([1, 1000000]).range([0, width]);
+  let x = d3
+    .scaleLog()
+    .domain([1, 1000000])
+    .range([0, width - 100]);
 
   let y = d3
     .scaleBand()
     .domain(countryType.map((d) => d[countryTypeVar]))
     // .padding(0.2)
-    .range([0, width]);
+    .range([15, height]);
 
-
-  //   let xAxis = barSvg
-  //     .append("g")
-  //     .attr("class", "xAxis")
-  //     .attr("transform", "translate(0," + height + ")")
-  //     .call(d3.axisBottom(x).tickSize(0))
-  //     .call((g) => {
-  //       g.select(".domain").remove();
-  //     });
-
-  //   let yAxis = barSvg
-  //     .append("g")
-  //     .attr("class", "yAxis")
-  //     .style("font-size", "8px")
-  //     .attr("transform", "translate(-3," + -(y.bandwidth() / 30) + ")")
-  //     .call(d3.axisRight(y).tickSize(0))
-  //     .call((g) => {
-  //       g.select(".domain").remove();
-  //     });
 
   barSvg
     .append("g")
@@ -96,6 +80,29 @@ function barChartCreator(countryType, countryTypeVar) {
     .delay(function (d, i) {
       return i * 200;
     });
+
+  barSvg
+    .selectAll("num")
+    .data(countryType)
+    .enter()
+    .append("text")
+    .text((d) => +d["International total"])
+    .attr("x", (d) => x(+d["International total"]) + 5)
+    .attr("y", (d) => y(d[countryTypeVar]) + 15)
+    .attr("fill", "white")
+
+  barSvg
+    .selectAll("country")
+    .data(countryType)
+    .enter()
+    .append("text")
+    .text((d) =>
+      toggle === "out" ? d["Country of asylum"] : d["Country of origin"]
+    )
+    .attr("x", (d) => x(1))
+    .attr("y", (d) => y(d[countryTypeVar])-5)
+    .attr("fill", "white")
+    .attr('font-size', '14px')
 }
 
 function sortValues(countryType) {
@@ -123,3 +130,13 @@ function topFiveFilter() {
     topFiveCountyType = sortedCountryType;
   }
 }
+// One of my undergraduate essay was doing how the artists audiences and operators
+// co create the taipei livinghouse . Is ther other perpectives affect this cultural space
+// So I want to do the research of this cultural scene in NY
+
+// Looking at the distribution of music venues in New york. Is there any changes during the years
+// especially after the covid
+// also during the years the mainstream music has been changed a lot
+// so is also the genres of music show change either
+
+// I am trying to apply  visualization to explore the cultural soundscape in NEW York Ciy

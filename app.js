@@ -17,7 +17,7 @@ function infoTextsHandler(data, countryTypeVar) {
 
   refNum.innerHTML = refNumHTML;
   countryName.innerHTML = counrtyNameHTML;
-  refPer.innerHTML = refPerHTML;
+  // refPer.innerHTML = refPerHTML;
 
   //   let rawHTML = `${countryRefugeesTotal()} refugees originated from ${
   //     data[0][countryTypeVar]
