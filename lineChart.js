@@ -8,15 +8,21 @@ let lineChartSvg = d3
   .attr("width", lineWidth)
   .attr("height", lineHeight);
 
+let lineChartPath;
+let lineChartDot;
+let lineChartDotBackground;
+let x;
+let y;
+
 function lineChartCreator(data, countryTypeVar, country) {
-  lineChartSvg.selectAll('*').remove()
+  lineChartSvg.selectAll("*").remove();
 
   let countryData = data.filter((d) => d[countryTypeVar] === country);
-  let x = d3
+  x = d3
     .scaleTime()
     .domain(d3.extent(data, (d) => d3.timeParse("%Y")(d["Year"])))
     .range([10, lineWidth - 25]);
-  let y = d3
+  y = d3
     .scaleLinear()
     .domain([500, 1000000])
     .range([lineHeight - 20, 25]);
@@ -47,7 +53,7 @@ function lineChartCreator(data, countryTypeVar, country) {
     .select(".domain")
     .remove();
 
-  lineChartSvg
+  lineChartPath = lineChartSvg
     .append("path")
     .datum(countryData)
     .attr("fill", "none")
@@ -62,7 +68,7 @@ function lineChartCreator(data, countryTypeVar, country) {
         .y((d) => y(+d["International total"]))
     );
 
-  lineChartSvg
+  lineChartDotBackground = lineChartSvg
     .selectAll("dotBackgroud")
     .data(countryData)
     .enter()
@@ -72,7 +78,7 @@ function lineChartCreator(data, countryTypeVar, country) {
     .attr("r", 5)
     .attr("fill", "black");
 
-  lineChartSvg
+  lineChartDot = lineChartSvg
     .selectAll("dot")
     .exit()
     .remove()
@@ -82,5 +88,49 @@ function lineChartCreator(data, countryTypeVar, country) {
     .attr("cx", (d) => x(d3.timeParse("%Y")(d["Year"])))
     .attr("cy", (d) => y(+d["International total"]))
     .attr("r", 3)
+    .attr("fill", toggle === "out" ? originatedColor : headedColor)
+    .style("z-index", "140")
+    .on("mouseover", (e, d) => {
+      content = `${d["International total"]}`;
+      tooltip.html(content).style("visibility", "visible");
+    })
+    .on("mousemove", (e, d) => {
+      tooltip
+        .style("top", e.pageY - (tooltip.node().clientHeight + 5) + "px")
+        .style("left", e.pageX - tooltip.node().clientWidth / 2 + "px");
+    })
+    .on("mouseout", (e, d) => {
+      tooltip.style("visibility", "hidden");
+    });
+}
+
+function updateLineChart(data, countryTypeVar, country) {
+  let countryData = data.filter((d) => d[countryTypeVar] === country);
+  lineChartPath
+    .datum(countryData)
+    .transition()
+    .duration(1000)
+    .attr("stroke", toggle === "out" ? originatedColor : headedColor)
+    .attr(
+      "d",
+      d3
+        .line()
+        // .curve(d3.curveBasis)
+        .x((d) => x(d3.timeParse("%Y")(d["Year"])))
+        .y((d) => y(+d["International total"]))
+    );
+  lineChartDotBackground
+    .data(countryData)
+    .transition()
+    .duration(1000)
+    .attr("cx", (d) => x(d3.timeParse("%Y")(d["Year"])))
+    .attr("cy", (d) => y(+d["International total"]));
+
+  lineChartDot
+    .data(countryData)
+    .transition()
+    .duration(1000)
+    .attr("cx", (d) => x(d3.timeParse("%Y")(d["Year"])))
+    .attr("cy", (d) => y(+d["International total"]))
     .attr("fill", toggle === "out" ? originatedColor : headedColor);
 }

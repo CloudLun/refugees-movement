@@ -5,7 +5,12 @@ const data = {
   asylumYearData: "./data/total_data_year_country_asylum.csv",
 };
 
-const promises = [d3.json(data.centroids), d3.csv(data.refugees),d3.csv(data.originYearData),d3.csv(data.asylumYearData)];
+const promises = [
+  d3.json(data.centroids),
+  d3.csv(data.refugees),
+  d3.csv(data.originYearData),
+  d3.csv(data.asylumYearData),
+];
 
 const yearOptions = document.querySelector("#yearsSelection");
 const btn = document.querySelector(".btn");
@@ -13,6 +18,7 @@ const btn = document.querySelector(".btn");
 Promise.all(promises).then((data) => {
   yearFilteredData = dataYearFilter(data[1], "2021");
   countryCentroidCreator(data, data[2], data[3]);
+  lineChartCreator(data[2], "Country of origin", "China");
   yearOptions.addEventListener("change", (event) => {
     target = event.target.value;
     yearFilteredData = dataYearFilter(data[1], target);

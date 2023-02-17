@@ -5,8 +5,8 @@ const map = new mapboxgl.Map({
   container: "map", // container ID
   // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
   style: "mapbox://styles/cloudlun/cl2eq8ceb000a15o06rah6zx5", // style URL
-  center: [60.128, 25.915], // starting position [lng, lat]
-  zoom: 1.85, // starting zoom
+  center: [30.128, 25.915], // starting position [lng, lat]
+  zoom: 1.95, // starting zoom
   interactive: false,
 });
 
@@ -38,7 +38,7 @@ let headedColor = "#ff7b7b";
 
 const r = 2.5;
 const svgNode = document.querySelector("svg");
-const tooltip = d3.select("body").append("div").attr("class", "tooltip");
+
 
 function projectPoint(lon, lat) {
   var point = map.project(new mapboxgl.LngLat(lon, lat));
@@ -97,7 +97,7 @@ function countryCentroidCreator(data, originYearData, asylumYearData) {
         barChartCreator(topFiveCountyType, "Country of asylum");
         infoTextsHandler(originCountry, "Country of origin");
         console.log(originCountry[0]["Country of origin"])
-        lineChartCreator(
+        updateLineChart(
           originYearData,
           "Country of origin",
           originCountry[0]["Country of origin"]
@@ -111,10 +111,10 @@ function countryCentroidCreator(data, originYearData, asylumYearData) {
         topFiveFilter();
         barChartCreator(topFiveCountyType, "Country of origin");
         infoTextsHandler(asylumCountry, "Country of asylum");
-        lineChartCreator(
+        updateLineChart(
           asylumYearData,
           "Country of asylum",
-          originCountry[0]["Country of asylum"]
+          asylumCountry [0]["Country of asylum"]
         );
       }
     });

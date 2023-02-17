@@ -130,13 +130,5 @@ function topFiveFilter() {
     topFiveCountyType = sortedCountryType;
   }
 }
-// One of my undergraduate essay was doing how the artists audiences and operators
-// co create the taipei livinghouse . Is ther other perpectives affect this cultural space
-// So I want to do the research of this cultural scene in NY
 
-// Looking at the distribution of music venues in New york. Is there any changes during the years
-// especially after the covid
-// also during the years the mainstream music has been changed a lot
-// so is also the genres of music show change either
 
-// I am trying to apply  visualization to explore the cultural soundscape in NEW York Ciy
